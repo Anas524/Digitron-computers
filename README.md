@@ -35,6 +35,32 @@ It includes dynamic pricing, coupon system, admin controls, and product manageme
 
 https://digitroncomputers.com
 
+## Screenshots
+
+### Homepage
+
+![Homepage](public/screenshots/home.png)
+
+### About Page
+
+![About](public/screenshots/About.png)
+
+### Shop Page
+
+![Shop](public/screenshots/Shop.png)
+
+### Product Page
+
+![Product](public/screenshots/product.png)
+
+### Cart Page
+
+![Cart](public/screenshots/Cart.png)
+
+### Admin Panel
+
+![Admin](public/screenshots/admin.png)
+
 ## Author
 
 Anas Ahamed
