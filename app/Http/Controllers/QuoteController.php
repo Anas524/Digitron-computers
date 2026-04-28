@@ -113,7 +113,20 @@ class QuoteController extends Controller
 
         $quotes = DB::table('quotes')
             ->leftJoin('quote_attachments', 'quotes.id', '=', 'quote_attachments.quote_id')
-            ->select('quotes.*', DB::raw('COUNT(quote_attachments.id) as att_count'))
+            ->select(
+                'quotes.id',
+                'quotes.full_name',
+                'quotes.email',
+                'quotes.phone',
+                'quotes.area',
+                'quotes.quote_type',
+                'quotes.budget',
+                'quotes.message',
+                'quotes.details',
+                'quotes.status',
+                'quotes.created_at',
+                DB::raw('COUNT(quote_attachments.id) as att_count')
+            )
             ->when($request->filled('search'), function ($query) use ($request) {
                 $query->where(function ($q) use ($request) {
                     $q->where('quotes.full_name', 'like', '%' . $request->search . '%')
@@ -121,7 +134,19 @@ class QuoteController extends Controller
                         ->orWhere('quotes.quote_type', 'like', '%' . $request->search . '%');
                 });
             })
-            ->groupBy('quotes.id')
+            ->groupBy(
+                'quotes.id',
+                'quotes.full_name',
+                'quotes.email',
+                'quotes.phone',
+                'quotes.area',
+                'quotes.quote_type',
+                'quotes.budget',
+                'quotes.message',
+                'quotes.details',
+                'quotes.status',
+                'quotes.created_at'
+            )
             ->orderByDesc('quotes.id')
             ->paginate(30)
             ->withQueryString();

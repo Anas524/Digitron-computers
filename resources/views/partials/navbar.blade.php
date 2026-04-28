@@ -145,13 +145,23 @@
                                             Open Dashboard
                                         </a>
 
+                                        @auth
+                                        @if(auth()->user()->is_admin)
                                         <form method="POST" action="{{ route('admin.logout') }}" class="mt-3">
                                             @csrf
-                                            <button type="submit"
-                                                class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
+                                            <button type="submit" class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
                                                 Logout
                                             </button>
                                         </form>
+                                        @else
+                                        <form method="POST" action="{{ route('customer.logout') }}" class="mt-3">
+                                            @csrf
+                                            <button type="submit" class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
+                                                Logout
+                                            </button>
+                                        </form>
+                                        @endif
+                                        @endauth
                                     </div>
                                 </div>
                             </div>

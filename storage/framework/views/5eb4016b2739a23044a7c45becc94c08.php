@@ -146,13 +146,23 @@
                                             Open Dashboard
                                         </a>
 
+                                        <?php if(auth()->guard()->check()): ?>
+                                        <?php if(auth()->user()->is_admin): ?>
                                         <form method="POST" action="<?php echo e(route('admin.logout')); ?>" class="mt-3">
                                             <?php echo csrf_field(); ?>
-                                            <button type="submit"
-                                                class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
+                                            <button type="submit" class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
                                                 Logout
                                             </button>
                                         </form>
+                                        <?php else: ?>
+                                        <form method="POST" action="<?php echo e(route('customer.logout')); ?>" class="mt-3">
+                                            <?php echo csrf_field(); ?>
+                                            <button type="submit" class="w-full py-3 rounded-xl border border-white/10 text-white hover:bg-white/10 transition">
+                                                Logout
+                                            </button>
+                                        </form>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
